@@ -1,4 +1,4 @@
-import '../core/network/app_export.dart';
+import '../core/app_export.dart';
 import 'en/en_translations.dart';
 
 class AppLocalization extends Translations {
