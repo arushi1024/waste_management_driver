@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management/core/app_export.dart';
 import 'package:waste_management/core/utils/validations_functions.dart';
-import './../theme/custom_button_style.dart';
-import './../widgets/custom_elevated_button.dart';
-import './../widgets/custom_radio_button.dart';
-import './../widgets/custom_text_form_field.dart';
+import 'package:waste_management/theme/custom_button_style.dart';
+import 'package:waste_management/widgets/custom_elevated_button.dart';
+import 'package:waste_management/widgets/custom_radio_button.dart';
+import 'package:waste_management/widgets/custom_text_form_field.dart';
+// import './../theme/custom_button_style.dart';
+// import './../widgets/custom_elevated_button.dart';
+// import './../widgets/custom_radio_button.dart';
+// import './../widgets/custom_text_form_field.dart';
 import 'controller/iphone_16_pro_three_controller.dart';
 
 // ignore_for_file: must_be_immutable
 class Iphone16ProThreeScreen extends GetWidget<Iphone16ProThreeController> {
-  Iphone16ProThreeScreen({Key? key}) : super(key: key);
+  Iphone16ProThreeScreen({super.key});
 
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -63,13 +67,7 @@ class Iphone16ProThreeScreen extends GetWidget<Iphone16ProThreeController> {
                     SizedBox(height: 4.h),
                     _buildUserTypeSelection(),
                     SizedBox(height: 22.h),
-                    CustomElevatedButton(
-                      text: "msg_create_an_account".tr.toUpperCase(),
-                      margin: EdgeInsets.only(left: 8.h, right: 14.h),
-                      buttonStyle: CustomButtonStyles.fillTeal,
-                      buttonTextStyle:
-                          CustomTextStyles.titleLargeOnPrimaryContainer,
-                    ),
+                    CustomElevatedButton(text: "msg_create_an_account".tr.toUpperCase(),margin: EdgeInsets.only(left: 8.h, right: 14.h),buttonStyle: CustomButtonStyles.fillTeal,buttonTextStyle:CustomTextStyles.titleLargeOnPrimaryContainer,),
                     SizedBox(height: 106.h),
                     GestureDetector(
                       onTap: () {
