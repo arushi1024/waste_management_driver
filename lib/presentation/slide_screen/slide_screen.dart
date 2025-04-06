@@ -32,6 +32,12 @@ class SlideScreen extends GetWidget<SlideController> {
                             height: 40.h,
                             width: 42.h,
                             alignment: Alignment.centerLeft,
+                            onTap: () {
+             // Navigate back to the home page
+                   Get.toNamed(AppRoutes.homepageWithMenuScreen);
+               // Alternatively, if you want to go back to the previous screen:
+               // Get.back();
+                           },
                           ),
                           SizedBox(height: 68.h),
                           Row(
