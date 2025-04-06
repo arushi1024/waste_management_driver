@@ -103,8 +103,8 @@ class SlideScreen extends GetWidget<SlideController> {
                             children: [
                               CustomImageView(
                                 imagePath: ImageConstant.imgTempimagebtindv,
-                                height: 24.h,
-                                width: 24.h,
+                                height: 30.h,
+                                width: 30.h, //both were 24
                               ),
                               Padding(
                                 padding: EdgeInsets.only(left: 4.h),
