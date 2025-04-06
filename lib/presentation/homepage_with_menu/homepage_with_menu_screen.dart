@@ -87,27 +87,31 @@ class HomepageWithMenuScreen extends GetWidget<HomepageWithMenuController> {
 
   /// Section Widget: AppBar
   PreferredSizeWidget _buildAppBar() {
-    return CustomAppBar(
-      leadingWidth: 47.h,
-      leading: AppbarLeadingImage(
-        imagePath: ImageConstant.imgTempimageymyxm5,
-        margin: EdgeInsets.only(left: 5.h),
+  return CustomAppBar(
+    leadingWidth: 47.h,
+    leading: AppbarLeadingImage(
+      imagePath: ImageConstant.imgTempimageymyxm5,
+      margin: EdgeInsets.only(left: 5.h),
+      onTap: () {
+        // Navigate to slide screen when image is tapped
+        Get.toNamed(AppRoutes.slideScreen);
+      },
+    ),
+    title: Container(
+      height: 54.h,
+      width: 260.h,
+      margin: EdgeInsets.only(right: 45.h),
+      child: Stack(
+        children: [
+          AppbarTitle(
+            text: "1bl_welcome".tr,
+          ),
+          AppbarTitle(
+            text: "1bl_welcome".tr,
+          )
+        ],
       ),
-      title: Container(
-        height: 54.h,
-        width: 260.h,
-        margin: EdgeInsets.only(right: 45.h),
-        child: Stack(
-          children: [
-            AppbarTitle(
-              text: "1bl_welcome".tr,
-            ),
-            AppbarTitle(
-              text: "1bl_welcome".tr,
-            )
-          ],
-        ),
-      ),
-    );
-  }
+    ),
+  );
+}
 }
