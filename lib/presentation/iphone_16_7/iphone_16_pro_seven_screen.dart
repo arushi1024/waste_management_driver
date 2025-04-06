@@ -48,6 +48,10 @@ class Iphone16ProSevenScreen extends GetWidget<Iphone16ProSevenController> {
                     margin: EdgeInsets.only(left: 10.h, right: 22.h),
                     buttonStyle: CustomButtonStyles.fillLightGreen,
                     buttonTextStyle: CustomTextStyles.headlineMediumBlack900_1,
+                    onPressed: () {
+                 // Navigate to iPhone 16 Pro Eight screen
+                    Get.toNamed(AppRoutes.iphone16ProEightScreen);
+  }
                   ),
                 ],
               ),

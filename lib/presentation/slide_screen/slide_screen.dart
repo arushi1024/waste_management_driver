@@ -60,7 +60,6 @@ class SlideScreen extends GetWidget<SlideController> {
                           SizedBox(
                             width: double.maxFinite,
                             child: Row(
-                             
                               children: [
                                 CustomImageView(
                                   imagePath: ImageConstant.imgTempimagevuivjd8,
@@ -78,23 +77,6 @@ class SlideScreen extends GetWidget<SlideController> {
                                 )
                               ],
                             ),
-                          ),
-                          SizedBox(height: 16.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              //imgTempimagemyyjby
-                              CustomImageView(
-                                imagePath: ImageConstant.imgTempimageymyjby,
-                                height: 28.h,
-                                width: 34.h,
-                              ),
-                              Text(
-                                "Ibl_settings".tr,
-                                style: CustomTextStyles.headlineLarge32,
-                              ),
-                            ],
                           ),
                           SizedBox(height: 18.h),
                           Row(
