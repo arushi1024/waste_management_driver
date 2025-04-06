@@ -32,23 +32,28 @@ class HomepageWithMenuScreen extends GetWidget<HomepageWithMenuController> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 22.h),
-                      child: Column(
-                        spacing: 22,
-                        children: [
-                          CustomImageView(
-                            imagePath: ImageConstant.imgTempimageliwfil,
-                            height: 94.h,
-                            width: 94.h,
-                            radius: BorderRadius.circular(4.h),
-                            margin: EdgeInsets.only(left: 8.h, right: 12.h),
-                          ),
-                          Text(
-                            "msg_file_a_complaint".tr,
-                            style: theme.textTheme.bodyMedium,
-                          ),
-                        ],
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.iphone16ProSevenScreen);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 22.h),
+                        child: Column(
+                          spacing: 22,
+                          children: [
+                            CustomImageView(
+                              imagePath: ImageConstant.imgTempimageliwfil,
+                              height: 94.h,
+                              width: 94.h,
+                              radius: BorderRadius.circular(4.h),
+                              margin: EdgeInsets.only(left: 8.h, right: 12.h),
+                            ),
+                            Text(
+                              "msg_file_a_complaint".tr,
+                              style: theme.textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -106,6 +111,3 @@ class HomepageWithMenuScreen extends GetWidget<HomepageWithMenuController> {
     );
   }
 }
-
-
-
