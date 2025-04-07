@@ -6,7 +6,7 @@ import 'contactinfolist_item_model.dart';
 class FrameSeventeenModel {
 Rx<List<ContactinfolistItemModel>> contactinfolistItemList = Rx([
 ContactinfolistItemModel(
-nameOne: ImageConstant.img1828439RemovebgPreview.obs, nameTwo: "bl_name2".tr.obs,
+nameOne: ImageConstant.img1828439RemovebgPreview.obs, nameTwo: "lbl_name2".tr.obs,
 priyankareddy: "lbl_priyanka_reddy".tr.obs) ,
 ContactinfolistItemModel(
 nameOne: ImageConstant.imgImageRemovebgPreview12.obs, 

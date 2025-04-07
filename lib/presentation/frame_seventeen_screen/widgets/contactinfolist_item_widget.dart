@@ -13,30 +13,30 @@ var controller = Get.find<FrameSeventeenController>();
 @override
 Widget build(BuildContext context) {
 return Padding (
-padding: EdgeInsets.only(left: 8.h), child: Row( children: [
+padding: EdgeInsets.symmetric(vertical: 8.h,horizontal: 16.h), child: Row( 
+  crossAxisAlignment: CrossAxisAlignment.start, children: [
 Obx (
 () => CustomImageView(
 imagePath: contactinfolistItemModelObj.nameOne!.value, height: 58.h, width: 58.h,
 ) ,
 ),
+SizedBox(width: 12.h,),
 Expanded(
-child: Align(
-alignment: Alignment.bottomLeft, child: Padding( padding: EdgeInsets.only(bottom: 2.h), child: Column( spacing: 6, crossAxisAlignment: CrossAxisAlignment.start, children: [
+child: Column(
+crossAxisAlignment: CrossAxisAlignment.start,  children: [
 Obx(
 () => Text(
-contactinfolistItemModelObj.nameTwo!.value, style: theme.textTheme.bodyMedium,
+contactinfolistItemModelObj.nameTwo!.value, style: theme.textTheme.bodyMedium, maxLines: 1,overflow: TextOverflow.clip,
 ),
 ),
 Obx (
 () => Text(
-contactinfolistItemModelObj.priyankareddy!.value, style: CustomTextStyles.bodyMediumInter15,
+contactinfolistItemModelObj.priyankareddy!.value, style: CustomTextStyles.bodyMediumInter15,maxLines: 1,overflow: TextOverflow.clip,
 ),
 )
 ],
 ),
 ),
-),
-)
 ],
 ),
 );

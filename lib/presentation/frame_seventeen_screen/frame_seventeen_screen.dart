@@ -53,9 +53,7 @@ height: 178.h, width: 196.h, margin: EdgeInsets.only(left: 102.h),
 /// Section Widget
 Widget _buildContactInfoList() {
 return Padding (
-padding: EdgeInsets.only(
-left:38.h, right: 248.h,
-),
+padding: EdgeInsets.symmetric(horizontal: 24.h),
 child: Obx(
 () => ListView.separated(
 padding: EdgeInsets.zero, physics: NeverScrollableScrollPhysics(),
