@@ -43,7 +43,6 @@ class Iphone16ProTwoScreen extends GetWidget<Iphone16ProTwoController> {
       ),
     );
   }
-
   /// Section Widget
   Widget _buildEmailInputField() {
     return SizedBox(
