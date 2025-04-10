@@ -31,10 +31,11 @@ final Map<String, String> en = {
   "Ibl_welcome":"Welcome",
   "Ibl_your_profile":"Your Profile",
   "Ibl_about_us2":"About Us",
-  "lbl_priyanka_reddy":"Priyanka Reddy",
+  "lbl_arjun_reddy":"Arjun Reddy",
   "lbl_name2":"NAME",
+  "lbl_my_pickups":"My Pickups",
   "lbl_email_id":"EMAIL ID",
-  "msg_pripri_gmail_com":"pripri@gmail.com",
+  "msg_reddyanna_gmail_com":"reddyanna@gmail.com",
 
   "msg_already_have_an": "Already have an account? ",
   "msg_already_have_an2": "Already have an account? Log in",
