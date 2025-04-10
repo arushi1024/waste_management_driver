@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:waste_management/widgets/app_bar/appbar_leading_image.dart';
+import 'package:waste_management/widgets/app_bar/custom_app_bar.dart';
 import '../../core/app_export.dart';
 import '../../theme/custom_button_style.dart';
 import '../../widgets/custom_elevated_button.dart';
@@ -11,41 +13,31 @@ class Iphone16ProEightScreen extends GetWidget<Iphone16ProEightController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appTheme.lightGreen30001,
+      appBar: _buildAppBar(),
       body: SafeArea(
+        top: false,
         child: Container(
           width: double.maxFinite,
           padding: EdgeInsets.symmetric(
-            horizontal: 24.h,
-            vertical: 106.h,
+            vertical: 20.h,
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Spacer(flex: 51,),
-              Text(
-                "msg_complaint_filed".tr,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+              Container(
+                decoration: AppDecoration.outlineBlueGray,
+                child: Text("lbl_my_pick_ups".tr,
                 textAlign: TextAlign.center,
-                style: CustomTextStyles.displayMediumOnPrimaryContainer,
+                style: theme.textTheme.displayMedium,),
               ),
-              Spacer(flex: 48,),
-              CustomElevatedButton(
-                height: 78.h,
-                text: "lbl_go_back_home".tr,
-                margin: EdgeInsets.only(left: 10.h, right: 6.h),
-                onPressed: () {
-                  onTapGobackhome();
-                },
+              Spacer(flex: 23,),
+              CustomImageView(
+                imagePath: ImageConstant.imgTempimagefii5kq,
+                height: 198.h,
+                width: double.maxFinite,
+                margin: EdgeInsets.only(right: 4.h),
               ),
-              SizedBox(height: 36.h),
-              CustomElevatedButton(
-                height: 74.h,
-                text: "msg_file_another_complaint".tr,
-                margin: EdgeInsets.only(left: 10.h, right: 6.h),
-                onPressed: () {
-                  onTapFileanother();
-                },
+              Spacer(
+                flex: 76,
               )
             ],
           ),
@@ -53,18 +45,22 @@ class Iphone16ProEightScreen extends GetWidget<Iphone16ProEightController> {
       ),
     );
   }
-
-  /// Navigates to the homepageWithMenuScreen when the action is triggered.
-  onTapGobackhome() {
-    Get.toNamed(
-      AppRoutes.homepageWithMenuScreen,
+  ///Section Widget
+  PreferredSizeWidget _buildAppBar(){
+    return CustomAppBar(
+      height: 56.h,
+      leadingWidth: 55.h,
+      leading: AppbarLeadingImage(
+        imagePath: ImageConstant.imgTempimagez2xc80,
+        margin: EdgeInsets.only(left: 13.h),
+        onTap: (){
+          onTapImgTempimagez2xcei();
+        },
+      ),
     );
   }
 
-  /// Navigates to the iphonel6ProSevenScreen when the action is triggered.
-  onTapFileanother() {
-    Get.toNamed(
-      AppRoutes.iphone16ProSevenScreen,
-    );
+  onTapImgTempimagez2xcei(){
+    Get.toNamed(AppRoutes.homepageWithMenuScreen,);
   }
 }

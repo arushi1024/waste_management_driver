@@ -160,7 +160,7 @@ class SlideScreen extends GetWidget<SlideController> {
                                                     margin: EdgeInsets.only(right: 6.h),
                                                   ),
                                                   Text(
-                                                    "msg_file_a_complaint".tr,
+                                                    "lbl_my_pick_ups".tr,
                                                     style: theme.textTheme.bodySmall,
                                                     maxLines: 1,
                                                     overflow: TextOverflow.clip,
@@ -193,7 +193,7 @@ class SlideScreen extends GetWidget<SlideController> {
     );
   }
 
-  /// Section Widget
+  // Section Widget
   Widget _buildHorizontalScrollSection() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,

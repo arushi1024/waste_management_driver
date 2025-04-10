@@ -40,4 +40,6 @@ class ImageConstant {
   static String imgImageRemovebgPreview12 = '$imagePath/image-removebg-preview-12.png';
   static String imgImageRemovebgPreview10 = '$imagePath/image-removebg-preview-10.png';
   static String imgImage2='$imagePath/img_bg_about_us.png';
+  static String imgTempimagerobdau='$imagePath/image-removebg-preview.png';
+  static String imgTempimagefii5kq='$imagePath/dummy-map.png';
 }

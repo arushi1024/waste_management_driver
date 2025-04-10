@@ -42,39 +42,20 @@ class HomepageWithMenuScreen extends GetWidget<HomepageWithMenuController> {
                           spacing: 22,
                           children: [
                             CustomImageView(
-                              imagePath: ImageConstant.imgTempimageliwfil,
+                              imagePath: ImageConstant.imgTempimagerobdau,
                               height: 94.h,
                               width: 94.h,
                               radius: BorderRadius.circular(4.h),
                               margin: EdgeInsets.only(left: 8.h, right: 12.h),
                             ),
                             Text(
-                              "msg_file_a_complaint".tr,
+                              "lbl_my_pickups".tr,
                               style: theme.textTheme.bodyMedium,
                             ),
                           ],
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 158.h,
-                      child: Column(
-                        spacing: 22,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          CustomImageView(
-                            imagePath: ImageConstant.imgTempimagelfdver,
-                            height: 94.h,
-                            width: 96.h,
-                            margin: EdgeInsets.only(right: 14.h),
-                          ),
-                          Text(
-                            "msg_track_my_collector".tr,
-                            style: theme.textTheme.bodyMedium,
-                          ),
-                        ],
-                      ),
-                    )
                   ],
                 ),
               )
@@ -106,9 +87,6 @@ class HomepageWithMenuScreen extends GetWidget<HomepageWithMenuController> {
           AppbarTitle(
             text: "1bl_welcome".tr,
           ),
-          AppbarTitle(
-            text: "1bl_welcome".tr,
-          )
         ],
       ),
     ),

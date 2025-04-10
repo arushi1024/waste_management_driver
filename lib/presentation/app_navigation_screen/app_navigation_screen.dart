@@ -68,33 +68,28 @@ class AppNavigationsGreen extends GetWidget<AppNavigationController> {
                                     onTapScreenTitle(AppRoutes.iphone16ProOneScreen),
                               ),
                               _buildScreenTitle(
-                                screenTitle: "iPhone 16 Pro - Three",
-                                onTapScreenTitle: () =>
-                                    onTapScreenTitle(AppRoutes.iphone16ProThreeScreen),
-                              ),
-                              _buildScreenTitle(
                                 screenTitle: "iPhone 16 Pro - Two",
                                 onTapScreenTitle: () =>
                                     onTapScreenTitle(AppRoutes.iphone16ProTwoScreen),
+                              ),
+                              _buildScreenTitle(
+                                screenTitle: "iPhone 16 Pro - Three",
+                                onTapScreenTitle: () =>
+                                    onTapScreenTitle(AppRoutes.iphone16ProThreeScreen),
                               ), _buildScreenTitle(
                                 screenTitle: "HomePage with Menu",
                                 onTapScreenTitle: () =>
                                     onTapScreenTitle(AppRoutes.homepageWithMenuScreen),
                               ),
                               _buildScreenTitle(
-                                screenTitle: "iPhone 16 Pro - Seven",
+                                screenTitle: "Slide Screen",
                                 onTapScreenTitle: () =>
-                                    onTapScreenTitle(AppRoutes.iphone16ProSevenScreen),
+                                    onTapScreenTitle(AppRoutes.slideScreen),
                               ),
                               _buildScreenTitle(
                                 screenTitle: "iPhone 16 Pro - Eight",
                                 onTapScreenTitle: () =>
                                     onTapScreenTitle(AppRoutes.iphone16ProEightScreen),
-                              ),
-                              _buildScreenTitle(
-                                screenTitle: "Slide Screen",
-                                onTapScreenTitle: () =>
-                                    onTapScreenTitle(AppRoutes.slideScreen),
                               ),
                               _buildScreenTitle(
                                 screenTitle: "Frame Seventeen",
