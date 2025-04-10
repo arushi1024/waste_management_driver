@@ -34,7 +34,7 @@ class HomepageWithMenuScreen extends GetWidget<HomepageWithMenuController> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Get.toNamed(AppRoutes.iphone16ProSevenScreen);
+                        Get.toNamed(AppRoutes.iphone16ProEightScreen);
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 22.h),

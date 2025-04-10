@@ -7,8 +7,6 @@ import 'package:waste_management/presentation/iphone_16_2/binding/iphone_16_pro_
 import 'package:waste_management/presentation/iphone_16_2/iphone_16_pro_two_screen.dart';
 import 'package:waste_management/presentation/iphone_16_3/binding/iphone_16_pro_three_binding.dart';
 import 'package:waste_management/presentation/iphone_16_3/iphone_16_pro_three_screen.dart';
-import 'package:waste_management/presentation/iphone_16_7/binding/iphone_16_pro_seven_binding.dart';
-import 'package:waste_management/presentation/iphone_16_7/iphone_16_pro_seven_screen.dart';
 import 'package:waste_management/presentation/iphone_16_8/binding/iphone_16_pro_eight_binding.dart';
 import 'package:waste_management/presentation/iphone_16_8/iphone_16_pro_eight_screen.dart';
 import 'package:waste_management/presentation/slide_screen/binding/slide_binding.dart';
@@ -28,7 +26,6 @@ class AppRoutes {
   static const String iphone16ProThreeScreen = '/iphone_16_pro_three_screen';
   static const String iphone16ProTwoScreen = '/iphone_16_pro_two_screen';
   static const String homepageWithMenuScreen='/homepage_with_menu_screen';
-  static const String iphone16ProSevenScreen='/iphone_16_pro_seven_screen';
   static const String iphone16ProEightScreen='/iphone_16_pro_eight_screen';
   static const String slideScreen='/slide_screen';
   static const String appNavigationScreen = '/app_navigation_screen';
@@ -55,11 +52,6 @@ class AppRoutes {
       name: homepageWithMenuScreen,
       page: () => HomepageWithMenuScreen(),
       bindings: [HomepageWithMenuBinding()],
-    ),
-    GetPage(
-      name: iphone16ProSevenScreen,
-      page: () => Iphone16ProSevenScreen(),
-      bindings: [Iphone16ProSevenBinding()],
     ),
     GetPage(
       name: iphone16ProEightScreen,
