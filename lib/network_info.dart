@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:waste_management/main.dart';
+import 'package:waste_management_driver/main.dart';
 
 
 abstract class NetworkInfoI {

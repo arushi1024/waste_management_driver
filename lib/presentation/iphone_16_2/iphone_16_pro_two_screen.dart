@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/app_export.dart';
-import 'package:waste_management/core/utils/validations_functions.dart';
+import 'package:waste_management_driver/core/utils/validations_functions.dart';
 import '../../theme/custom_button_style.dart';
 import '../../widgets/custom_outlined_button.dart';
 import '../../widgets/custom_text_form_field.dart';

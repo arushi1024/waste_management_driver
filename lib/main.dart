@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         translations: AppLocalization(),
         locale: Locale('en', ''),
         fallbackLocale: Locale('en', ''),
-        title: 'waste_management_1',
+        title: 'waste_management_driver',
         initialRoute: AppRoutes.initialRoute,
         getPages: AppRoutes.pages,
         builder: (context, child) {

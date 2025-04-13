@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:waste_management/core/app_export.dart';
-import 'package:waste_management/core/utils/validations_functions.dart';
-import 'package:waste_management/theme/custom_button_style.dart';
-import 'package:waste_management/widgets/custom_elevated_button.dart';
-import 'package:waste_management/widgets/custom_radio_button.dart';
-import 'package:waste_management/widgets/custom_text_form_field.dart';
+import 'package:waste_management_driver/core/app_export.dart';
+import 'package:waste_management_driver/core/utils/validations_functions.dart';
+import 'package:waste_management_driver/theme/custom_button_style.dart';
+import 'package:waste_management_driver/widgets/custom_elevated_button.dart';
+import 'package:waste_management_driver/widgets/custom_radio_button.dart';
+import 'package:waste_management_driver/widgets/custom_text_form_field.dart';
 // import './../theme/custom_button_style.dart';
 // import './../widgets/custom_elevated_button.dart';
 // import './../widgets/custom_radio_button.dart';

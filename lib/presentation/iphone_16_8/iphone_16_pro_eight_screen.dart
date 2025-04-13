@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:waste_management/widgets/app_bar/appbar_leading_image.dart';
-import 'package:waste_management/widgets/app_bar/custom_app_bar.dart';
+import 'package:waste_management_driver/widgets/app_bar/appbar_leading_image.dart';
+import 'package:waste_management_driver/widgets/app_bar/custom_app_bar.dart';
 import '../../core/app_export.dart';
 import '../../theme/custom_button_style.dart';
 import '../../widgets/custom_elevated_button.dart';
