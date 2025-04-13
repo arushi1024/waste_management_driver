@@ -1,66 +1,67 @@
-import 'package:flutter/material.dart'; 
-import'../../core/app_export.dart';
-import '../../theme/custom_button_style.dart';
-import '../../widgets/custom_elevated_button.dart';
-import 'controller/iphone_16_pro_twelve_controller.dart'; // ignore_for_file: must_be_immutable
-class Iphone16ProTwelveScreen extends GetWidget<Iphone16ProTwelveController> {
-const Iphone16ProTwelveScreen ({Key? key})
-: super (
-key: key,
-);
-@override
-Widget build(BuildContext context) {
-return Scaffold(
-extendBody: true, extendBodyBehindAppBar: true, backgroundColor: theme.colorScheme.onPrimaryContainer.withValues (
-alpha: 0.6,
-),
-body: Container(
-width: double.maxFinite, height: SizeUtils.height, decoration: AppDecoration.fillOnPrimaryContainer1, child: SafeArea ( child: SizedBox(
-width: double.maxFinite, child: SingleChildScrollView(
-child: Container(
-width: double.maxFinite, padding: EdgeInsets.only(
-left: 12.h, top: 50.h, right: 12.h,
-),
-child: Column( children: [
-SizedBox(height: 20.h),
-Container (
-width: double.maxFinite, margin: EdgeInsets.only(left: 8.h), child: Column ( spacing: 76, children: [
-Text (
-"Ibl_about_us2".tr,
-maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,
-style: CustomTextStyles.displayMediumKaiseiTokumin,
-),
-Text (
-"msg_bengaluru_s_waste".tr,
-maxLines: 17, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: theme.textTheme.titleMedium,
-),
-CustomElevatedButton ( height: 54.h, text: "1bl_home".tr,
-margin: EdgeInsets.only(
-left: 90.h, right: 82.h,
-),
-buttonStyle: CustomButtonStyles.fillOnPrimaryContainer,
-buttonTextStyle:
-CustomTextStyles.headlineSmallBlack900,
-onPressed: () {
-onTapHomeButton () ;
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:waste_management_driver/presentation/iphone_16_pro_twelve_screen/controller/iphone_16_pro_twelve_controller.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter/services.dart';
+
+class Iphone16ProTwelveScreen extends StatefulWidget {
+  @override
+  State<Iphone16ProTwelveScreen> createState() => _Iphone16ProTwelveScreenState();
 }
-)
-],
-),
-)
-],
-),
-),
-),
-),
-),
-),
-);
-}
-/// Navigates to the homepageWithMenuScreen when the action is triggered.
-onTapHomeButton () {
-Get.toNamed (
-AppRoutes.homepageWithMenuScreen,
-) ;
-}
+
+class _Iphone16ProTwelveScreenState extends State<Iphone16ProTwelveScreen> {
+  final controller = Get.find<Iphone16ProTwelveController>();
+  late final WebViewController webViewController;
+
+  @override
+  void initState() {
+    super.initState();
+    webViewController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..addJavaScriptChannel(
+        'pickupPoints',
+        onMessageReceived: (JavaScriptMessage message) {
+          final addresses = List<String>.from(json.decode(message.message));
+          controller.setPickupPoints(addresses);
+        },
+      )
+      ..setNavigationDelegate(NavigationDelegate(
+        onPageFinished: (_) {},
+      ));
+    _loadHtml();
+  }
+
+  Future<void> _loadHtml() async {
+    final html = await rootBundle.loadString('assets/map_driver.html');
+    final uri = Uri.dataFromString(html, mimeType: 'text/html', encoding: Encoding.getByName('utf-8'));
+    webViewController.loadRequest(uri);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Driver Map")),
+      body: Column(
+        children: [
+          Expanded(
+            flex: 3,
+            child: WebViewWidget(controller: webViewController),
+          ),
+          Expanded(
+            flex: 2,
+            child: Obx(() => ListView.builder(
+              itemCount: controller.pickupPoints.length,
+              itemBuilder: (_, index) {
+                return ListTile(
+                  leading: Icon(Icons.location_on),
+                  title: Text(controller.pickupPoints[index].address),
+                );
+              },
+            )),
+          )
+        ],
+      ),
+    );
+  }
 }

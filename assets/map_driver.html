@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Truck Pickup Map</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    body { margin: 0; padding: 0; }
+    #map { height: 100vh; width: 100vw; }
+
+    .custom-marker {
+      background-color: blue;
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      border: 2px solid white;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZG5rc3R1IiwiYSI6ImNsbG52a2tlczAzcmIzZXFqZWQxcDZ3ejAifQ.6ZcF167s50csrJuwCt61qQ';
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [77.5946, 12.9716], // Bangalore center
+      zoom: 12
+    });
+
+    // Truck location
+    const truckLocation = [77.5800, 12.9721];
+    new mapboxgl.Marker({ color: 'red' })
+      .setLngLat(truckLocation)
+      .setPopup(new mapboxgl.Popup().setText("Truck Location"))
+      .addTo(map);
+
+    // Predefined pickup points
+    const pickupPoints = [
+      { coords: [77.5865, 12.9770], address: "1. MG Road, Bangalore" },
+      { coords: [77.6012, 12.9538], address: "2. Lalbagh, Bangalore" },
+      { coords: [77.5640, 12.9975], address: "3. Rajajinagar, Bangalore" }
+    ];
+
+    pickupPoints.forEach((point, index) => {
+      const el = document.createElement('div');
+      el.className = 'custom-marker';
+      el.textContent = (index + 1).toString();
+
+      new mapboxgl.Marker(el)
+        .setLngLat(point.coords)
+        .setPopup(new mapboxgl.Popup().setText(point.address))
+        .addTo(map);
+    });
+  </script>
+</body>
+</html>

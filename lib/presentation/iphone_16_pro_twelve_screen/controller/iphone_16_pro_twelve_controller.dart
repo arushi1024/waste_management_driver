@@ -5,5 +5,8 @@ import'../models/iphone_16_pro_twelve_model.dart';
 ///
 /// This class manages the state of the Iphone16ProTwelveScreen, including the /I/ current iphone16ProTwelveModelObj
 class Iphone16ProTwelveController extends GetxController {
-Rx<Iphone16ProTwelveModel> iphone16ProTwelveModelObj = Iphone16ProTwelveModel().obs;
+  var pickupPoints=<Iphone16ProTwelveModel>[].obs;
+void setPickupPoints(List<String> addresses){
+  pickupPoints.value=addresses.map((addr)=> Iphone16ProTwelveModel(address: addr)).toList();
+}
 }
