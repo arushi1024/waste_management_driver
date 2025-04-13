@@ -130,9 +130,9 @@ class Iphone16ProTwoScreen extends GetWidget<Iphone16ProTwoController> {
   }
 
   /// Navigates to the homepageWithMenuScreen when the sign-in button is tapped.
-  onTapSignin() {
-    Get.toNamed(
-      AppRoutes.homepageWithMenuScreen,
-    );
+ onTapSignin() {
+  if (_formKey.currentState!.validate()) {
+    controller.loginUser(); // Call the controller's login method
   }
+}
 }
