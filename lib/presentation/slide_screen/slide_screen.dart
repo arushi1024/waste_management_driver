@@ -40,7 +40,11 @@ class SlideScreen extends GetWidget<SlideController> {
                            },
                           ),
                           SizedBox(height: 68.h),
-                          Row(
+                           GestureDetector( 
+                             onTap: () {
+                            Get.toNamed(AppRoutes.frameSeventeenScreen);
+                        },
+                         child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               CustomImageView(
@@ -56,8 +60,13 @@ class SlideScreen extends GetWidget<SlideController> {
                               ),
                             ],
                           ),
+                          ),
                           SizedBox(height: 18.h),
-                          Row(
+                          GestureDetector(
+                             onTap: () {
+                                   Get.toNamed(AppRoutes.iphone16ProTwelveScreen);
+                                     },
+                              child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -74,7 +83,8 @@ class SlideScreen extends GetWidget<SlideController> {
                                 ),
                               )
                             ],
-                          )
+                              ),
+                          ),
                         ],
                       ),
                     ),
@@ -210,7 +220,7 @@ class SlideScreen extends GetWidget<SlideController> {
                 width: 72.h,
               ),
               Text(
-                "msg_track_my_collector".tr,
+                "lbl_my_pick_ups".tr,
                 style: theme.textTheme.bodySmall,
               )
             ],

@@ -61,8 +61,8 @@ Widget _buildNameRow(){
           children: [
             Text("lbl_name2".tr,
             style: theme.textTheme.bodyMedium,),
-            Text("lbl_arjun_reddy".tr,
-            style: CustomTextStyles.bodyMediumInter15,)
+            Obx(() => Text(controller.userName.value.tr,
+            style: CustomTextStyles.bodyMediumInter15,)),
           ],
         ),
         )
@@ -88,8 +88,8 @@ Widget _buildEmailRow(){
             Text("lbl_email_id".tr,
             style: theme.textTheme.bodyMedium,
             ),
-            Text("msg_reddyanna_gmail_com".tr,
-            style: theme.textTheme.bodySmall,)
+            Obx(() => Text(controller.userEmail.value.tr,
+            style: theme.textTheme.bodySmall,)),
           ],
         ),
         )
