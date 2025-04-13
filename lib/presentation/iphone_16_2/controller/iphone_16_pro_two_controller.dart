@@ -18,12 +18,13 @@ class Iphone16ProTwoController extends GetxController {
       Get.snackbar("Login Error", "Please enter both email and password");
       return;
     }
-
-      
-      final userDetails = await SharedPrefsHelper.getUserDetails();
-
-
-      if (userDetails['email'] == email) {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      final userDetails =await SharedPrefsHelper.getUserDetails();
+       if (userDetails['email'] == email) {
         final profileController = Get.put(FrameSeventeenController());
         profileController.userName.value = userDetails['name'] ?? '';
         profileController.userEmail.value = userDetails['email'] ?? '';
@@ -31,27 +32,6 @@ class Iphone16ProTwoController extends GetxController {
       }
       Get.snackbar("Login Success", "Welcome back!");
 
-      // Navigate to home or dashboard screen
-      Get.offAllNamed(AppRoutes.homepageWithMenuScreen); // change this as needed
-
-   
-  }
-
-  Future<void> loginUser() async {
-    final email = emailController.text.trim();
-    final password = passwordController.text.trim();
-
-    if (email.isEmpty || password.isEmpty) {
-      Get.snackbar("Login Error", "Please enter both email and password");
-      return;
-    }
-
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      Get.snackbar("Login Success", "Welcome back!");
 
       // Navigate to the driver homepage (update the route as needed)
       Get.offAllNamed(AppRoutes.homepageWithMenuScreen); // replace with your actual route
