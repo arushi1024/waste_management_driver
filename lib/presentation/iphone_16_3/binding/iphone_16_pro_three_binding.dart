@@ -8,6 +8,6 @@ import '../controller/iphone_16_pro_three_controller.dart';
 class Iphone16ProThreeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => Iphone16ProThreeController());
+    Get.lazyPut(() => DriverSignupController());
   }
 }
