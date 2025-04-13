@@ -12,7 +12,7 @@ import 'package:waste_management_driver/widgets/custom_text_form_field.dart';
 import 'controller/iphone_16_pro_three_controller.dart';
 
 // ignore_for_file: must_be_immutable
-class Iphone16ProThreeScreen extends GetWidget<Iphone16ProThreeController> {
+class Iphone16ProThreeScreen extends GetWidget<DriverSignupController> {
   Iphone16ProThreeScreen({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -67,7 +67,14 @@ class Iphone16ProThreeScreen extends GetWidget<Iphone16ProThreeController> {
                     SizedBox(height: 4.h),
                     _buildUserTypeSelection(),
                     SizedBox(height: 22.h),
-                    CustomElevatedButton(text: "msg_create_an_account".tr.toUpperCase(),margin: EdgeInsets.only(left: 8.h, right: 14.h),buttonStyle: CustomButtonStyles.fillTeal,buttonTextStyle:CustomTextStyles.titleLargeOnPrimaryContainer,),
+                    CustomElevatedButton(
+                      text: "msg_create_an_account".tr.toUpperCase(),margin: EdgeInsets.only(left: 8.h, right: 14.h),buttonStyle: CustomButtonStyles.fillTeal,buttonTextStyle:CustomTextStyles.titleLargeOnPrimaryContainer,
+                      onPressed: () {
+    if (_formKey.currentState!.validate()) {
+      controller.signUpDriver();
+    }
+  },
+  ),
                     SizedBox(height: 106.h),
                     GestureDetector(
                       onTap: () {
@@ -119,7 +126,7 @@ class Iphone16ProThreeScreen extends GetWidget<Iphone16ProThreeController> {
             ),
           ),
           CustomTextFormField(
-            controller: controller.nametwoController,
+            controller: controller.nameController,
             hintText: "lbl_enter_your_name".tr,
             contentPadding: EdgeInsets.symmetric(horizontal: 12.h, vertical: 16.h),
             validator: (value) {
@@ -150,7 +157,7 @@ class Iphone16ProThreeScreen extends GetWidget<Iphone16ProThreeController> {
             ),
           ),
           CustomTextFormField(
-            controller: controller.emailtwoController,
+            controller: controller.emailController,
             hintText: "msg_enter_your_email".tr,
             textInputType: TextInputType.emailAddress,
           ),
@@ -174,7 +181,7 @@ class Iphone16ProThreeScreen extends GetWidget<Iphone16ProThreeController> {
             ),
           ),
           CustomTextFormField(
-            controller: controller.passwordtwoController,
+            controller: controller.passwordController,
             hintText: "msg_create_a_password".tr,
             textInputAction: TextInputAction.done,
             textInputType: TextInputType.visiblePassword,
