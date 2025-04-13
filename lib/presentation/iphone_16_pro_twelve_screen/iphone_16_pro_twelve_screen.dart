@@ -26,9 +26,14 @@ class _Iphone16ProTwelveScreenState extends State<Iphone16ProTwelveScreen> {
           controller.setPickupPoints(addresses);
         },
       )
-      ..setNavigationDelegate(NavigationDelegate(
-        onPageFinished: (_) {},
-      ));
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageFinished: (String url) {
+            // Extract pickup points from HTML when the page is loaded
+            _extractPickupPointsFromMap();
+          },
+        ),
+      );
     _loadHtml();
   }
 
@@ -36,6 +41,18 @@ class _Iphone16ProTwelveScreenState extends State<Iphone16ProTwelveScreen> {
     final html = await rootBundle.loadString('assets/map_driver.html');
     final uri = Uri.dataFromString(html, mimeType: 'text/html', encoding: Encoding.getByName('utf-8'));
     webViewController.loadRequest(uri);
+  }
+
+  // Function to extract pickup points from the HTML map
+  void _extractPickupPointsFromMap() {
+    final jsCode = """
+      if (typeof pickupPoints !== 'undefined') {
+        const addresses = pickupPoints.map(point => point.address);
+        window.pickupPoints.postMessage(JSON.stringify(addresses));
+      }
+    """;
+    
+    webViewController.runJavaScript(jsCode);
   }
 
   @override
@@ -54,8 +71,20 @@ class _Iphone16ProTwelveScreenState extends State<Iphone16ProTwelveScreen> {
               itemCount: controller.pickupPoints.length,
               itemBuilder: (_, index) {
                 return ListTile(
-                  leading: Icon(Icons.location_on),
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.blue,
+                    child: Text("${index + 1}"),
+                  ),
                   title: Text(controller.pickupPoints[index].address),
+                  trailing: IconButton(
+                    icon: Icon(Icons.directions),
+                    onPressed: () {
+                      // When a list item is clicked, navigate to this point on the map
+                      if (controller.pickupPoints.length > index) {
+                        _navigateToPickupPoint(index);
+                      }
+                    },
+                  ),
                 );
               },
             )),
@@ -63,5 +92,35 @@ class _Iphone16ProTwelveScreenState extends State<Iphone16ProTwelveScreen> {
         ],
       ),
     );
+  }
+  
+  // Function to navigate to a specific pickup point when clicked in the list
+  void _navigateToPickupPoint(int index) {
+    webViewController.runJavaScript("""
+      if (typeof map !== 'undefined' && typeof pickupPoints !== 'undefined') {
+        // Get the coordinates of the selected pickup point
+        const point = pickupPoints[$index];
+        if (point) {
+          // Center the map on the selected point
+          map.flyTo({
+            center: point.coords,
+            zoom: 15,
+            essential: true
+          });
+          
+          // Open the popup for this marker
+          const markers = document.querySelectorAll('.custom-marker');
+          if (markers.length > $index) {
+            // Simulate a click on the marker
+            const clickEvent = new MouseEvent('click', {
+              view: window,
+              bubbles: true,
+              cancelable: true
+            });
+            markers[$index].dispatchEvent(clickEvent);
+          }
+        }
+      }
+    """);
   }
 }

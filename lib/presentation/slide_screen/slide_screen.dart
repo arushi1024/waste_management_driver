@@ -64,7 +64,7 @@ class SlideScreen extends GetWidget<SlideController> {
                           SizedBox(height: 18.h),
                           GestureDetector(
                              onTap: () {
-                                   Get.toNamed(AppRoutes.iphone16ProTwelveScreen);
+                                   Get.toNamed(AppRoutes.iphone16ProEightScreen);
                                      },
                               child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
