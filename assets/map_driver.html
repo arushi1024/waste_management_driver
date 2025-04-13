@@ -60,6 +60,37 @@
         .setLngLat(point.coords)
         .setPopup(new mapboxgl.Popup().setText(point.address))
         .addTo(map);
+    });//new code added here
+    const allPoints = [truckLocation, ...pickupPoints.map(p => p.coords)];
+  const coordinatesString = allPoints.map(p => `${p[0]},${p[1]}`).join(';');
+  const directionsUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinatesString}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
+
+  fetch(directionsUrl)
+    .then(response => response.json())
+    .then(data => {
+      const route = data.routes[0].geometry;
+
+      map.addSource('route', {
+        type: 'geojson',
+        data: {
+          type: 'Feature',
+          geometry: route
+        }
+      });
+
+      map.addLayer({
+        id: 'route-line',
+        type: 'line',
+        source: 'route',
+        layout: {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        paint: {
+          'line-color': '#1E90FF',
+          'line-width': 4
+        }
+      });
     });
   </script>
 </body>
