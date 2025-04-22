@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:waste_management_driver/widgets/complaints.dart';
 import '../../core/app_export.dart';
 import '../../widgets/app_bar/appbar_leading_image.dart';
 import '../../widgets/app_bar/appbar_title.dart';
@@ -8,6 +9,7 @@ import 'controller/homepage_with_menu_controller.dart'; // ignore_for_file: must
 
 class HomepageWithMenuScreen extends GetWidget<HomepageWithMenuController> {
   const HomepageWithMenuScreen({super.key});
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,12 +34,13 @@ class HomepageWithMenuScreen extends GetWidget<HomepageWithMenuController> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    // Option for "My Pickups"
                     GestureDetector(
                       onTap: () {
                         Get.toNamed(AppRoutes.iphone16ProTwelveScreen);
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 22.h),
+                        // padding: EdgeInsets.symmetric(horizontal: 22.h),
                         child: Column(
                           spacing: 22,
                           children: [
@@ -56,6 +59,34 @@ class HomepageWithMenuScreen extends GetWidget<HomepageWithMenuController> {
                         ),
                       ),
                     ),
+                    // Option for "View Complaints"
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to complaints page
+                        // Get.toNamed(AppRoutes.viewComplaintsScreen);
+                         Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (x) => ViewComplaintsScreen()),
+                    );
+                      },
+                      child: Container(
+                        // padding: EdgeInsets.symmetric(horizontal: 22.h),
+                        child: Column(
+                          spacing: 22,
+                          children: [
+                            Icon(
+                              Icons.report_problem, // Complaint icon
+                              size: 94.h,
+                              color: theme.colorScheme.primary,
+                            ),
+                            Text(
+                              "view complaints against me", // Label for Complaints
+                              style: theme.textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               )
@@ -68,24 +99,64 @@ class HomepageWithMenuScreen extends GetWidget<HomepageWithMenuController> {
 
   /// Section Widget: AppBar
   PreferredSizeWidget _buildAppBar() {
-  return CustomAppBar(
-    leadingWidth: 47.h,
-    leading: AppbarLeadingImage(
-      imagePath: ImageConstant.imgTempimageymyxm5,
-      margin: EdgeInsets.only(left: 5.h),
-      onTap: () {
-        // Navigate to slide screen when image is tapped
-        Get.toNamed(AppRoutes.slideScreen);
-      },
-    ),
-    title: Container(
-      height: 54.h,
-      width: 260.h,
-      margin: EdgeInsets.only(right: 45.h),
-      child: Stack(
+  return PreferredSize(
+    preferredSize: Size.fromHeight(70.h),
+    child: Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        borderRadius: const BorderRadius.vertical(
+          bottom: Radius.circular(20),
+        ),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 16.h),
+      child: Row(
         children: [
-          AppbarTitle(
-            text: "1bl_welcome".tr,
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(AppRoutes.slideScreen);
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                ImageConstant.imgTempimageymyxm5,
+                height: 40.h,
+                width: 40.h,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SizedBox(width: 16.h),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "👋 Hello!", // Could also be dynamic or localized
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey[600],
+                  ),
+                ),
+                Text(
+                  "1bl_welcome".tr,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
         ],
       ),

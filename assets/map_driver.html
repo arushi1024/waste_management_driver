@@ -9,19 +9,10 @@
   <style>
     body { margin: 0; padding: 0; }
     #map { height: 100vh; width: 100vw; }
-
-    .custom-marker {
-      background-color: blue;
-      color: white;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      border: 2px solid white;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    .truck-marker img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
     }
   </style>
 </head>
@@ -33,18 +24,25 @@
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [77.5946, 12.9716], // Bangalore center
+      center: [77.5946, 12.9716],
       zoom: 12
     });
 
-    // Truck location
+    // Replace red marker with image
     const truckLocation = [77.5800, 12.9721];
-    new mapboxgl.Marker({ color: 'red' })
+    const truckEl = document.createElement('div');
+    truckEl.className = 'truck-marker';
+
+    const truckImg = document.createElement('img');
+    truckImg.src = "https://i.ibb.co/zWyF3Wb7/toy-truck.png"; // Use your image
+    truckEl.appendChild(truckImg);
+
+    new mapboxgl.Marker(truckEl)
       .setLngLat(truckLocation)
       .setPopup(new mapboxgl.Popup().setText("Truck Location"))
       .addTo(map);
 
-    // Predefined pickup points
+    // Pickup points
     const pickupPoints = [
       { coords: [77.6084, 12.9696], address: "1. Dream House, MG Road, Bangalore" },
       { coords: [77.6002, 12.9505], address: "2. Orchid Stay, Lalbagh Rd, Bangalore" },
@@ -55,43 +53,58 @@
       const el = document.createElement('div');
       el.className = 'custom-marker';
       el.textContent = (index + 1).toString();
+      Object.assign(el.style, {
+        backgroundColor: 'blue',
+        color: 'white',
+        borderRadius: '50%',
+        width: '30px',
+        height: '30px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold',
+        border: '2px solid white',
+        boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)'
+      });
 
       new mapboxgl.Marker(el)
         .setLngLat(point.coords)
         .setPopup(new mapboxgl.Popup().setText(point.address))
         .addTo(map);
-    });//new code added here
-    const allPoints = [truckLocation, ...pickupPoints.map(p => p.coords)];
-  const coordinatesString = allPoints.map(p => `${p[0]},${p[1]}`).join(';');
-  const directionsUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinatesString}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
-
-  fetch(directionsUrl)
-    .then(response => response.json())
-    .then(data => {
-      const route = data.routes[0].geometry;
-
-      map.addSource('route', {
-        type: 'geojson',
-        data: {
-          type: 'Feature',
-          geometry: route
-        }
-      });
-
-      map.addLayer({
-        id: 'route-line',
-        type: 'line',
-        source: 'route',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#1E90FF',
-          'line-width': 4
-        }
-      });
     });
+
+    // Draw route
+    const allPoints = [truckLocation, ...pickupPoints.map(p => p.coords)];
+    const coordinatesString = allPoints.map(p => `${p[0]},${p[1]}`).join(';');
+    const directionsUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinatesString}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
+
+    fetch(directionsUrl)
+      .then(response => response.json())
+      .then(data => {
+        const route = data.routes[0].geometry;
+
+        map.addSource('route', {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            geometry: route
+          }
+        });
+
+        map.addLayer({
+          id: 'route-line',
+          type: 'line',
+          source: 'route',
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#1E90FF',
+            'line-width': 4
+          }
+        });
+      });
   </script>
 </body>
 </html>
