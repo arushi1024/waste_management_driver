@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../core/app_export.dart';
@@ -11,6 +12,7 @@ class DriverSignupController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController vehicleNumberController = TextEditingController(); // New Controller for Vehicle Number
 
   Rx<Iphone16ProThreeModel> driverSignupModelObj = Iphone16ProThreeModel().obs;
   
@@ -32,6 +34,18 @@ class DriverSignupController extends GetxController {
       final userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
           await SharedPrefsHelper.saveUserDetails(name: name, email: email, userType: "driver");
+
+
+      final uid = userCredential.user?.uid;
+
+      await FirebaseFirestore.instance.collection('users').doc(uid).set({
+        'name': name,
+        'email': email,
+        'userType': userTypeSelection.value,
+         // or 'driver', etc.
+         'vehicleNumber' : vehicleNumberController.text.trim()
+      });
+
       //Get.snackbar("Success", "Signed up: ${userCredential.user?.email}");
       
       // Optional: Save user data to Firestore or any other database if necessary
