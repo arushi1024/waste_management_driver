@@ -43,6 +43,7 @@ class Iphone16ProTwoScreen extends GetWidget<Iphone16ProTwoController> {
       ),
     );
   }
+
   /// Section Widget
   Widget _buildEmailInputField() {
     return SizedBox(
@@ -116,7 +117,14 @@ class Iphone16ProTwoScreen extends GetWidget<Iphone16ProTwoController> {
           SizedBox(height: 24.h),
           _buildPasswordInputField(),
           SizedBox(height: 24.h),
-          CustomOutlinedButton(height: 40.h,text: "lbl_sign_in".tr,buttonTextStyle: CustomTextStyles.bodyLargeInterOnError,onPressed: () {onTapSignin();},),
+          CustomOutlinedButton(
+            height: 40.h,
+            text: "lbl_sign_in".tr,
+            buttonTextStyle: CustomTextStyles.bodyLargeInterOnError,
+            onPressed: () {
+              onTapSignin();
+            },
+          ),
           SizedBox(height: 16.h),
           Text(
             "msg_forgot_password".tr,
@@ -130,9 +138,11 @@ class Iphone16ProTwoScreen extends GetWidget<Iphone16ProTwoController> {
   }
 
   /// Navigates to the homepageWithMenuScreen when the sign-in button is tapped.
- onTapSignin() {
-  if (_formKey.currentState!.validate()) {
-    controller.loginUser(); // Call the controller's login method
+  onTapSignin() {
+    if (_formKey.currentState!.validate()) {
+      controller.loginUser();
+      controller.markAttendanceOnLogin();
+      // Call the controller's login method
+    }
   }
-}
 }
