@@ -1,5 +1,9 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
 import '../../../core/app_export.dart';
 import '../models/iphone_16_pro_two_model.dart';
 import 'package:waste_management_driver/core/utils/shared_preferences_helper.dart';
@@ -53,6 +57,33 @@ class Iphone16ProTwoController extends GetxController {
       Get.snackbar("Error", "Something went wrong: $e");
     }
   }
+  Future<void> markAttendanceOnLogin() async {
+    log("attendance worked");
+  final user = FirebaseAuth.instance.currentUser;
+  if (user == null) return;
+
+  final uid = user.uid;
+  final today = DateFormat('d-M-yyyy').format(DateTime.now());
+
+  final docRef = FirebaseFirestore.instance.collection('attendance').doc(uid);
+
+  final docSnapshot = await docRef.get();
+
+  if (docSnapshot.exists) {
+    List<dynamic> attendanceList = docSnapshot.data()?['attendance'] ?? [];
+
+    if (!attendanceList.contains(today)) {
+      attendanceList.add(today);
+      await docRef.update({'attendance': attendanceList});
+    }
+  } else {
+    await docRef.set({
+      'id': uid,
+      'attendance': [today],
+    });
+  }
+}
+
 
   @override
   void onClose() {
