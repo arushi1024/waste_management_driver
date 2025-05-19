@@ -15,95 +15,85 @@ class HomepageWithMenuScreen extends GetWidget<HomepageWithMenuController> {
     return Scaffold(
       backgroundColor: theme.colorScheme.onPrimaryContainer,
       appBar: _buildAppBar(),
-      body:Column(
-  mainAxisSize: MainAxisSize.max,
-  children: [
-    CustomImageView(
-      imagePath: ImageConstant.imgTempimage7v1c0j,
-      height: 398.h,
-      width: double.maxFinite,
-    ),
-    Container(
-      width: double.maxFinite,
-      margin: EdgeInsets.symmetric(horizontal: 44.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // My Pickups
-          GestureDetector(
-            onTap: () {
-              Get.toNamed(AppRoutes.iphone16ProTwelveScreen);
-            },
-            child: Column(
-              children: [
-                CustomImageView(
-                  imagePath: ImageConstant.imgTempimagerobdau,
-                  height: 94.h,
-                  width: 94.h,
-                  radius: BorderRadius.circular(4.h),
-                  margin: EdgeInsets.only(left: 8.h, right: 12.h),
+      body: SafeArea(
+        top: false,
+        child: Container(
+          width: double.maxFinite,
+          padding: EdgeInsets.only(top: 8.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              CustomImageView(
+                imagePath: ImageConstant.imgTempimage7v1c0j,
+                height: 398.h,
+                width: double.maxFinite,
+              ),
+              Container(
+                width: double.maxFinite,
+                margin: EdgeInsets.symmetric(horizontal: 44.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Option for "My Pickups"
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.iphone16ProTwelveScreen);
+                      },
+                      child: Container(
+                        // padding: EdgeInsets.symmetric(horizontal: 22.h),
+                        child: Column(
+                          spacing: 22,
+                          children: [
+                            CustomImageView(
+                              imagePath: ImageConstant.imgTempimagerobdau,
+                              height: 94.h,
+                              width: 94.h,
+                              radius: BorderRadius.circular(4.h),
+                              margin: EdgeInsets.only(left: 8.h, right: 12.h),
+                            ),
+                            Text(
+                              "lbl_my_pickups".tr,
+                              style: theme.textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // Option for "View Complaints"
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to complaints page
+                        // Get.toNamed(AppRoutes.viewComplaintsScreen);
+                         Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (x) => ViewComplaintsScreen()),
+                    );
+                      },
+                      child: Container(
+                        // padding: EdgeInsets.symmetric(horizontal: 22.h),
+                        child: Column(
+                          spacing: 22,
+                          children: [
+                            Icon(
+                              Icons.report_problem, // Complaint icon
+                              size: 94.h,
+                              color: theme.colorScheme.primary,
+                            ),
+                            Text(
+                              "view complaints against me", // Label for Complaints
+                              style: theme.textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Text(
-                  "lbl_my_pickups".tr,
-                  style: theme.textTheme.bodyMedium,
-                ),
-              ],
-            ),
+              )
+            ],
           ),
-
-          // View Complaints
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (x) => ViewComplaintsScreen()),
-              );
-            },
-            child: Column(
-              children: [
-                Icon(
-                  Icons.report_problem,
-                  size: 94.h,
-                  color: theme.colorScheme.primary,
-                ),
-                Text(
-                  "View Complaints",
-                  style: theme.textTheme.bodyMedium,
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
-    ),
-
-    // 🔽 New: My Earnings
-    const SizedBox(height: 24),
-    // GestureDetector(
-    //   onTap: () {
-    //     // TODO: Navigate to earnings screen if you have one
-    //   },
-    //   child: Column(
-    //     children: [
-    //       Icon(
-    //         Icons.account_balance_wallet,
-    //         size: 64.h,
-    //         color: Colors.green[700],
-    //       ),
-    //       const SizedBox(height: 8),
-    //       Text(
-    //         "My Earnings",
-    //         style: theme.textTheme.bodyMedium?.copyWith(
-    //           fontSize: 16,
-    //           fontWeight: FontWeight.w600,
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // ),
-  ],
-),
-
     );
   }
 
